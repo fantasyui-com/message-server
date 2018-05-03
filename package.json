@@ -10,7 +10,8 @@
     "express": "~4.16.0",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "sqlite3": "^4.0.0"
   },
   "description": "Beautiful, minimalist stateful server for converting internet into a list of messages with title, body, comments, and read/unread states.",
   "main": "app.js",
