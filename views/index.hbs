@@ -13,13 +13,23 @@
   <div class="col p-3">
 
     {{#each data}}
-    <div class="row">
-    <div class="col p-3">
-      <div class="message">
-        <p class="">{{title}}/{{id}}{{message}}</p>
+
+      <div class="row">
+
+    <div class="col-2 p-3">
+      {{#if image}}
+      <img src="{{image}}">
+      {{/if}}
+    </div>
+
+      <div class="col p-3">
+        <div class="message">
+          <p class="">{{title}}</p>
+          <!-- <p class="small p-3">{{{message}}}</p> -->
+        </div>
       </div>
-    </div>
-    </div>
+      </div>
+
     {{/each}}
 
   </div>

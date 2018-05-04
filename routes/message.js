@@ -6,10 +6,10 @@ const path = require('path');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  const messages = JSON.parse(fs.readFileSync(path.join('./', 'messages.json'))));
-  const message = messages.data.filter(message => message.id == req.param.id)
+  // const messages = JSON.parse(fs.readFileSync(path.join('./', 'messages.json'))));
+  // const message = messages.data.filter(message => message.id == req.param.id)
 
-  res.render('index', Object.assign({ title: 'Express' },  );
+  res.render('index', Object.assign({ title: 'Express' }),  );
 
 });
 

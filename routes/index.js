@@ -3,13 +3,16 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 
-
+const sqlite3 = require('sqlite3').verbose()
+const db = new sqlite3.Database('database.sqlite3');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-  res.render('index', Object.assign({ title: 'Express' }, JSON.parse(fs.readFileSync(path.join('./', 'messages.json')))) );
-
+  db.serialize(function () {
+    db.all(`SELECT * FROM messages;`, function(err, data) {
+      res.render('index', Object.assign({ meta: { title: '' }, data}) );
+    });
+  });
 });
 
 module.exports = router;
