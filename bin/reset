@@ -1,0 +1,69 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+// Database prep
+const sqlite3 = require('sqlite3').verbose()
+const db = new sqlite3.Database('./messages');
+
+const messages = [
+    {
+    "mid":"1",
+    "title": "A total shift to renewable energy would pay for itself through cost savings within two decades, and ultimately save Australians $20bn a year in combined fuel and power costs, a new report says.",
+    "message": "Study says 40% of transport could be emissions-free by 2035 and neighbours could trade clean electricity.",
+    "author": "Bob",
+    "read": "false",
+    }
+];
+
+const comments = [
+    {
+
+      "mid": "1",
+      "cid": "1",
+      "pid": "0",
+      "author": "Alice",
+      "message": "Wow, this is great."
+    },
+
+    {
+      "mid": "1",
+      "cid": "2",
+      "pid": "1",
+      "author": "Bob",
+      "message": "Glad you like it."
+    }
+  ]
+db.serialize(function () {
+
+  db.run(`CREATE TABLE IF NOT EXISTS messages (
+      mid TEXT PRIMARY KEY,
+      title TEXT,
+      message TEXT,
+      author TEXT,
+      read TEXT
+    );
+  `);
+
+  db.run(`CREATE TABLE IF NOT EXISTS comments (
+      mid TEXT,
+      cid TEXT PRIMARY KEY,
+      pid TEXT,
+      author TEXT,
+      message TEXT,
+      created DATETIME
+    );
+  `);
+
+  var stmt = db.prepare(`INSERT INTO messages VALUES (?,?,?,?,?)`);
+  messages.forEach(function(entry){
+    const { mid, title, message, author, read } = entry;
+    stmt.run( mid, title, message, author, read );
+  });
+  stmt.finalize();
+
+});
+
+db.close();

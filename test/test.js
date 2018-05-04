@@ -5,34 +5,34 @@ const sqlite3 = require('sqlite3').verbose()
 const db = new sqlite3.Database('messages');
 
 
-describe('Database Tests', function() {
+describe('Database data structure tests', function() {
 
-  describe('table base', function() {
-    it('tables should be present', function(done) {
+  describe('Testing for presence of SQL tables critical for program operation', function() {
 
-      const tableCount = 0;
-
+    it('The "comments" table should be present', function(done) {
       db.serialize(function () {
-
-        db.each(
-          "SELECT * FROM sqlite_master where type='table'",
-          function(err, row) {
-            tableCount++;
-            console.log("User id : "+row.id, row.dt);
-          },
-          function() {
-            assert.equal(tableCount, 2);
+        db.all(`SELECT * FROM sqlite_master where type='table'`, function(err, rows) {
+            assert.equal(rows.map(i=>i.name).filter(i=>i==='comments').length, 1);
             done();
-          }
-        );
-
-
-
+        });
       });
-
-      // db.close();
-
     });
+
+    it('The "messages" table should be present', function(done) {
+      db.serialize(function () {
+        db.all(`SELECT * FROM sqlite_master where type='table'`, function(err, rows) {
+            assert.equal(rows.map(i=>i.name).filter(i=>i==='messages').length, 1);
+            done();
+        });
+      });
+    });
+
+
+
+
   });
 
 });
+
+
+// db.close();

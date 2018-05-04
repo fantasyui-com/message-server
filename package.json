@@ -3,6 +3,7 @@
   "version": "1.7.1",
   "scripts": {
     "test": "mocha",
+    "reset": "node ./bin/reset",
     "start": "node ./bin/www"
   },
   "dependencies": {
