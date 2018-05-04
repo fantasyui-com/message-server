@@ -1,6 +1,6 @@
 {
   "name": "message-server",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "scripts": {
     "test": "mocha",
     "reset": "rm database.sqlite3; node ./bin/reset",
