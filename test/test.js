@@ -12,8 +12,9 @@ describe('Database data structure tests', function() {
     it('The "comments" table should be present', function(done) {
       db.serialize(function () {
         db.all(`SELECT * FROM sqlite_master where type='table'`, function(err, rows) {
-            assert.equal(rows.map(i=>i.name).filter(i=>i==='comments').length, 1);
-            done();
+          const findings = rows.filter( i => i.name==='comments' );
+          assert.equal( findings.length, 1);
+          done();
         });
       });
     });
@@ -21,18 +22,18 @@ describe('Database data structure tests', function() {
     it('The "messages" table should be present', function(done) {
       db.serialize(function () {
         db.all(`SELECT * FROM sqlite_master where type='table'`, function(err, rows) {
-            assert.equal(rows.map(i=>i.name).filter(i=>i==='messages').length, 1);
+            const findings = rows.filter( i => i.name==='messages' );
+            assert.equal( findings.length, 1);
             done();
         });
       });
     });
 
+  });
 
-
-
+  after(function() {
+    // runs after all tests in this block
+    // db.close();
   });
 
 });
-
-
-// db.close();
