@@ -4,6 +4,32 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const { URL } = require('url');
+const hbs = require('hbs');
+
+
+
+hbs.registerHelper('extname', function(url) {
+
+  let candidate;
+
+  const extname = path.extname(url)
+  const basename = path.basename(url)
+  const myURL = new URL(url);
+
+  if(extname){
+    candidate = path.extname(url).substr(1);
+  } else if (myURL.hostname) {
+    candidate = myURL.hostname;
+  } else if (basename) {
+    candidate = basename;
+  } else {
+    candidate = '???'
+  }
+
+  return candidate;
+});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var messageRouter = require('./routes/message');

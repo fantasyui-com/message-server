@@ -8,7 +8,10 @@
 const sqlite3 = require('sqlite3').verbose()
 const db = new sqlite3.Database('./database.sqlite3');
 
-var request = require('request');
+const sanitizeHtml = require('sanitize-html');
+const hasha = require('hasha');
+
+const request = require('request');
 
 var options = {
   url: 'https://www.reddit.com/r/all.json',
@@ -32,21 +35,23 @@ function callback(error, response, body) {
       const message = {};
       messages.push(message);
 
-      message.mid = redditPost.mid;
-      message.title = redditPost.title;
-      message.message = redditPost.selftext
-      message.image = redditPost.thumbnail;
-      message.author = redditPost.author;
+      message.mid = hasha( sanitizeHtml(redditPost.mid) );
+      message.title = sanitizeHtml(redditPost.title);
+      message.message = sanitizeHtml(redditPost.selftext);
+      message.image = sanitizeHtml(redditPost.thumbnail);
+      message.author = sanitizeHtml(redditPost.author);
+
+      message.discussion = sanitizeHtml('https://www.reddit.com'+redditPost.permalink);
+      message.source = sanitizeHtml(redditPost.url);
+
       message.read = "false";
 
-      if(message.message) message.message = message.message.replace(/</g, "[");
-      if(message.message) message.message = message.message.replace(/>/g, "]");
       if(message.message) message.message = message.message.replace(/\n/g, "<br>");
 
       if(! message.image.startsWith('http') ) message.image = "";
 
       /// https://www.reddit.com/r/all/?count=25&after=t3_8gug7u
-      
+
     });
 
     console.log(messages);
@@ -54,10 +59,10 @@ function callback(error, response, body) {
     db.serialize(function () {
 
 
-      var stmt = db.prepare(`INSERT INTO messages VALUES (?,?,?,?,?,?)`);
-      messages.forEach(function(entry){
-        const { mid, title, message, image, author, read } = entry;
-        stmt.run( mid, title, message, image, author, read );
+      var stmt = db.prepare(`INSERT INTO messages VALUES (?,?,?,?,?,?,?,?)`);
+      messages.forEach(function(entry, index){
+        const { mid, title, message, image, discussion, source, author, read } = entry;
+        stmt.run( mid+index, title, message, image, discussion, source, author, read );
       });
       stmt.finalize();
 
@@ -66,3 +71,6 @@ function callback(error, response, body) {
 
   }
 }
+
+
+request(options, callback)

@@ -1,39 +1,71 @@
-
-
 <div class="row">
-<div class="col">
+  <div class="col">
 
-  {{#with meta}}
-    {{#if title}}
-      <p class="lead">{{title}}</p>
-    {{/if}}
-  {{/with}}
-
-  <div class="row">
-  <div class="col p-3">
-
-    {{#each data}}
-
-      <div class="row">
-
-    <div class="col-2 p-3">
-      {{#if image}}
-      <img src="{{image}}">
+    {{#with meta}}
+      {{#if title}}
+        <p class="lead">{{title}}</p>
       {{/if}}
+    {{/with}}
+
+    <div class="row">
+      <div class="col p-3">
+
+        {{#each data}}
+
+          <div class="p-3 bg-secondary rounded mt-3" style="min-height: 7rem;">
+
+            <div class="row">
+
+              {{#if image}}
+                <div class="col-3">
+                  <img src="{{image}}" class="img-thumbnail img-fluid w-100 rounded bg-info border-dark"></img>
+                </div>
+              {{/if}}
+
+              <div class="col">
+                <p class="lead text-light">{{{title}}}</p>
+                {{#if message}} <p class="pb-2 small text-light">{{{message}}}</p> {{/if}}
+                {{#if source}} <div class="small text-light">{{source}}</div> {{/if}}
+                {{#if discussion}} <div class="small text-light">{{discussion}}</div> {{/if}}
+              </div>
+
+            </div>
+
+            <div class="row pt-3">
+              <div class="col">
+                <a href="{{source}}" class="btn btn-outline-light">Render {{extname source}}</a>
+                <a href="{{discussion}}" class="btn btn-outline-light">Discussion</a>
+                <a href="#" class="btn btn-outline-warning float-right">Read</a>
+              </div>
+            </div>
+
+          </div>
+
+        {{/each}}
+
+
+      </div>
     </div>
 
-      <div class="col p-3">
-        <div class="message">
-          <p class="">{{title}}</p>
-          <!-- <p class="small p-3">{{{message}}}</p> -->
+    <div class="row">
+      <div class="col">
+
+        <div class="p-3 bg-secondary rounded mt-3" style="min-height: 7rem;">
+          <div class="row pt-3">
+            <div class="col">
+              <a href="#" class="btn btn-outline-warning">Mark All As Read</a>
+              {{#if page}} <div class="small text-light">{{page}}</div> {{/if}}
+              {{#if after}} <div class="small text-light">{{after}}</div> {{/if}}
+
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
 
-    {{/each}}
+      </div>
+    </div>
+
+
+
 
   </div>
-  </div>
-
-</div>
 </div>

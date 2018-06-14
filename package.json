@@ -2,6 +2,7 @@
   "name": "message-server",
   "version": "1.9.1",
   "scripts": {
+    "dev": "DEBUG=message-server:* npm start",
     "test": "mocha",
     "reset": "rm database.sqlite3; node ./bin/reset",
     "start": "node ./bin/www"
@@ -10,10 +11,12 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
+    "hasha": "^3.0.0",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
     "request": "^2.85.0",
+    "sanitize-html": "^1.18.2",
     "sqlite3": "^4.0.0"
   },
   "description": "Beautiful, minimalist stateful server for converting internet into a list of messages with title, body, comments, and read/unread states.",
@@ -29,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/fantasyui-com/message-server/issues"
   },
-  "homepage": "https://github.com/fantasyui-com/message-server#readme"
+  "homepage": "https://github.com/fantasyui-com/message-server#readme",
+  "directories": {
+    "test": "test"
+  }
 }
