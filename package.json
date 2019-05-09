@@ -12,12 +12,12 @@
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "hasha": "^3.0.0",
-    "hbs": "~4.0.1",
+    "hbs": "^4.0.4",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
     "request": "^2.85.0",
-    "sanitize-html": "^1.18.2",
-    "sqlite3": "^4.0.0"
+    "sanitize-html": "^1.20.1",
+    "sqlite3": "^4.0.7"
   },
   "description": "Beautiful, minimalist stateful server for converting internet into a list of messages with title, body, comments, and read/unread states.",
   "main": "app.js",
