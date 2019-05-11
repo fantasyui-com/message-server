@@ -17,7 +17,7 @@
     "morgan": "~1.9.0",
     "request": "^2.85.0",
     "sanitize-html": "^1.20.1",
-    "sqlite3": "^4.0.7"
+    "sqlite3": "^4.0.8"
   },
   "description": "Beautiful, minimalist stateful server for converting internet into a list of messages with title, body, comments, and read/unread states.",
   "main": "app.js",
