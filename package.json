@@ -16,7 +16,7 @@
     "http-errors": "~1.7.3",
     "morgan": "~1.9.1",
     "request": "^2.88.0",
-    "sanitize-html": "^1.21.1",
+    "sanitize-html": "^2.3.2",
     "sqlite3": "^4.1.1"
   },
   "description": "Beautiful, minimalist stateful server for converting internet into a list of messages with title, body, comments, and read/unread states.",
