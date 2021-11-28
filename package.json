@@ -16,7 +16,7 @@
     "hbs": "^4.1.0",
     "http-errors": "~1.7.3",
     "morgan": "~1.9.1",
-    "request": "^2.88.0",
+    "request": "^2.65.0",
     "sanitize-html": "^2.5.1",
     "sqlite3": "^4.1.1"
   },
