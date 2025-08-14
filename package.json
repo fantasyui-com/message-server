@@ -15,7 +15,7 @@
     "hasha": "^5.1.0",
     "hbs": "^4.1.0",
     "http-errors": "~1.7.3",
-    "morgan": "~1.9.1",
+    "morgan": "^1.10.1",
     "request": "^2.65.0",
     "sanitize-html": "^2.5.1",
     "sqlite3": "^5.1.7"
